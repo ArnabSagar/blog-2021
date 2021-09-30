@@ -9,10 +9,9 @@ export default function Layout({ children }) {
         <Link href="/">
           <a>
             <h1>
-              <span>Just Add</span>
-              <span>Marmite</span>
+              <span>Arnab Sagar</span>
+              <span>Blog </span>
             </h1>
-            <h2>Spread The Joy</h2>
           </a>
         </Link>
       </header>
@@ -24,10 +23,8 @@ export default function Layout({ children }) {
 
       {/* In the footer add the good old details. Keep it simple*/}
       <footer>
-        <p>Copyright 2021 Just Add Marmite :)</p>
+        <p>Copyright 2021 @ Arnab Sagar :)</p>
       </footer>
-
-
 
     </div>
   )
