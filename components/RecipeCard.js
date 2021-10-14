@@ -1,6 +1,8 @@
 import Link from 'next/dist/client/link'
+import Image from 'next/image'
 import React from 'react'
 
+//This component is for each blog post card on the main page
 
 export default function RecipeCard({recipe}) {
 
@@ -11,7 +13,15 @@ export default function RecipeCard({recipe}) {
         <div className = 'card'>
         
             <div className="thumbnail">
-                {/* image - thumbnail */}
+              
+                {/* You always have to whitelist the domain because the Image tag auto-optimises the images from an external domain 
+                You add the whitelisted url/domain to the next.config.js file in the root folder 
+                Checkout image optimization documentation on Next */}
+                <Image  
+                    src={'https:' + thumbnail.fields.file.url}
+                    width={thumbnail.fields.file.details.image.width} 
+                    height={thumbnail.fields.file.details.image.height}     
+                />
             </div>
 
             <div className="content">
