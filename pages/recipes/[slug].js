@@ -51,7 +51,8 @@ export async function getStaticProps({params}){ //this is the params obj from th
   }) 
 
   return {
-    props:{ recipe: items[0]}
+    props:{ recipe: items[0]},
+    revalidate: 1  //how often (in seconds) does next.js check for content updates and regenerates the content on the page
   }
 
 }
