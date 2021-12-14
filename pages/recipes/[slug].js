@@ -49,8 +49,17 @@ export async function getStaticProps({params}){ //this is the params obj from th
   const {items} = await client.getEntries({ 
     content_type: 'blogPost', //this is the content type ID we have for blogPosts on contentful
     'fields.slug': params.slug  //we are specifying to contentful that we want from a specific object. and we know that a slug is unique
-
   }) 
+
+  if(!items.length){
+    return {
+      redirect:{
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
 
   return {
     props:{ recipe: items[0]},
