@@ -2,16 +2,17 @@ import { createClient } from "contentful"
 import { NextServer } from "next/dist/server/next";
 import RecipeCard from "../components/RecipeCard";
 
-// FALLBACK PAGES??
 
-
-
-// INCREMENTAL STATIC REGENERATION (ISR) - Next.js has this functionality
-//Next.js generates new pages and regenerates current pages on the fly when data is updated.
-
+//INCREMENTAL STATIC REGENERATION (ISR) - Next.js has this functionality, just need the revalidate parameter in the return object
+//Next.js generates regenerates current pages on the fly when data is updated. only for pre-existing pages. Implement FALLBACK PAGES for new pages:
 // For making changes to a blgopost or adding new blogposts to the website,
-//  I will either have to rebuild the whole website by repushing to github or use ISR
+// I will either have to rebuild the whole website by repushing to github or use ISR
 // This is because all the blod cards and the slug pages are all static 
+
+
+// FALLBACK PAGES
+// It is placeholder content which Next.js fetches new data for the page
+  
 
 
 /* The following is a async function which we use to get data 
@@ -29,7 +30,7 @@ export async function getStaticProps(){
 
   return {
     props: {recipes: res.items},
-    revalidate: 1 //how often (in seconds) does next.js check for content updates and regenerates the content on the page
+    revalidate: 1 //how often (in seconds) does next.js check for content updates and regenerates the content on the page. only for preexisting pages
   
   }
 

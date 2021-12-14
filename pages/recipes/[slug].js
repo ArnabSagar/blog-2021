@@ -1,6 +1,7 @@
 import { createClient } from "contentful"
 import Image from 'next/image'
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import Skeleton from "../../components/Skeleton"
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -32,8 +33,9 @@ export const getStaticPaths = async () => {
     // paths: [{ params:{slug: }},{}]
     paths: paths, //the paths variable assigned to the return paths variable is from the function above
   
-    fallback: false  //this means that we will show a 404 page and not a fallback page
-
+    fallback: false  //false, this means that we will show a 404 page and not a fallback page
+                      //true, this means that 404 page of the recipe page didn't return, but rather a fallback version 
+                                
   }
 
 }
@@ -52,7 +54,7 @@ export async function getStaticProps({params}){ //this is the params obj from th
 
   return {
     props:{ recipe: items[0]},
-    revalidate: 1  //how often (in seconds) does next.js check for content updates and regenerates the content on the page
+    revalidate: 1  //how often (in seconds) does next.js check for content updates and regenerates the content on the page, only for preexisting pages
   }
 
 }
@@ -61,6 +63,11 @@ export async function getStaticProps({params}){ //this is the params obj from th
 
 export default function RecipeDetails({recipe}) {  //destructing the props obj object from the func above to get the recipe
   // console.log(recipe);
+
+  if(!recipe) return (
+    <Skeleton/>
+  )
+
   const {featuredImage, title, readingTime, mainText} = recipe.fields
   return (
     <div>
