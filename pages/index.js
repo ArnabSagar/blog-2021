@@ -1,5 +1,4 @@
 import { createClient } from "contentful"
-import { NextServer } from "next/dist/server/next";
 import RecipeCard from "../components/RecipeCard";
 
 
@@ -14,9 +13,7 @@ import RecipeCard from "../components/RecipeCard";
 // It is placeholder content which Next.js fetches new data for the page
   
 
-/* The following is a async function which we use to get data 
-  from any source and then inject the data as Props in our components
-  This is where we first make our connection to Contentful*/
+  
 
 export async function getStaticProps(){
 
